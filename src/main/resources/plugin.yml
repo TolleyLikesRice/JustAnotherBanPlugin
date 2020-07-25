@@ -1,0 +1,11 @@
+name: JustAnotherBanPlugin2
+version: ${project.version}
+main: tolley.jabp.Main
+api-version: 1.13
+authors: [Tolley]
+description: Just Another Ban Plugin
+commands:
+  bangui:
+    description: Opens up the banning GUI
+    usage: /bangui
+    aliases: [bg, bgui]
