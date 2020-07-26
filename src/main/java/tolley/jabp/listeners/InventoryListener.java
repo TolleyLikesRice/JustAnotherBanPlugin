@@ -11,13 +11,15 @@ import java.util.List;
 
 public class InventoryListener implements Listener {
     FileConfiguration config;
-    public void sendConfig(FileConfiguration incommingConfig) {
-        config = incommingConfig;
+    String windowTitle;
+    public void sendInfo(FileConfiguration incomingConfig, String incomingWindowTitle) {
+        config = incomingConfig;
+        windowTitle = incomingWindowTitle;
     }
 
     @EventHandler
     public void onPlayerClickInventory(InventoryClickEvent e) {
-        if (e.getView().getTitle().equals("Server Info")) {
+        if (e.getView().getTitle().equals(windowTitle)) {
             if (e.getCurrentItem().getItemMeta() != null) {
                 if (e.getCurrentItem().getItemMeta().getDisplayName() != null) {
                     if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.RED + "Rules")) {

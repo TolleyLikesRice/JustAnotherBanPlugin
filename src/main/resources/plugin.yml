@@ -12,3 +12,4 @@ commands:
   playerinfo:
     description: Gets information on a player
     usage: /playerinfo <username>
+    aliases: [pi, ui]

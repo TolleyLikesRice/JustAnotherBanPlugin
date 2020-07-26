@@ -25,7 +25,7 @@ public class DataHandler {
         try {
             //Read File
             String fileContents = "";
-            File playerFile = new File(dataFolder + uuid);
+            File playerFile = new File(dataFolder + uuid + ".json");
             Scanner myReader = new Scanner(playerFile);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();

@@ -65,7 +65,9 @@ public class BanGUI implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + "[JABP] " + ChatColor.WHITE + "I could not find that player");
                     return true;
                 }
-                Inventory inv = Bukkit.createInventory(null, 27, "Punish: " + username + " (" + uuid + ")");
+
+                String windowTitle = "Punish: " + username;
+                Inventory inv = Bukkit.createInventory(null, 27, windowTitle);
 
                 ItemStack one = new ItemStack(Material.BARRIER);
                 ItemMeta oneItemMeta = one.getItemMeta();
@@ -144,7 +146,7 @@ public class BanGUI implements CommandExecutor {
                 inv.setItem(15, six);
                 inv.setItem(16, seven);
                 player.openInventory(inv);
-                inventoryListener.sendConfig(config);
+                inventoryListener.sendInfo(config, windowTitle);
             } else {
                 player.sendMessage("Incorrect Syntax. Use: /bangui <player>");
             }
