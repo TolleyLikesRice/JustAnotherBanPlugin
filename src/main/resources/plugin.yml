@@ -1,4 +1,4 @@
-name: JustAnotherBanPlugin2
+name: JustAnotherBanPlugin
 version: ${project.version}
 main: tolley.jabp.Main
 api-version: 1.13
@@ -9,3 +9,6 @@ commands:
     description: Opens up the banning GUI
     usage: /bangui
     aliases: [bg, bgui]
+  playerinfo:
+    description: Gets information on a player
+    usage: /playerinfo <username>

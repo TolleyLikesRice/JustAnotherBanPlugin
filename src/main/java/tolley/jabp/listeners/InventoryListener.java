@@ -1,4 +1,4 @@
-package tolley.jabp;
+package tolley.jabp.listeners;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;

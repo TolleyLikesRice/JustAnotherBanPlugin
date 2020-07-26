@@ -1,34 +1,20 @@
-package tolley.jabp;
+package tolley.jabp.handlers;
 
 import com.google.gson.Gson;
 import org.bukkit.Bukkit;
+import tolley.jabp.PlayerObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
-
-class PlayerObject {
-    public String username;
-    public String ip;
-    public int type1 = 0;
-    public int type2 = 0;
-    public int type3 = 0;
-    public int type4 = 0;
-    public int type5 = 0;
-    PlayerObject(String playerUsername, String ipAddress) {
-        username = playerUsername;
-        ip = ipAddress;
-    }
-}
 
 public class DataHandler {
     String dataFolder;
+
     public boolean initDataHandler(String path) {
-        dataFolder = path;
+        dataFolder = path + "/";
         Bukkit.getLogger().info("DataHandler initialized with data path " + dataFolder);
         return true;
     }
@@ -86,4 +72,31 @@ public class DataHandler {
             Bukkit.getLogger().warning("An error occurred while creating the data file for " + uuid);
         }
     }
+
+    public void modifyType1(String uuid, int newAmount) {
+        PlayerObject playerData = getPlayerData(uuid);
+        playerData.type1 = newAmount;
+        savePlayerData(uuid, playerData);
+    }
+    public void modifyType2(String uuid, int newAmount) {
+        PlayerObject playerData = getPlayerData(uuid);
+        playerData.type2 = newAmount;
+        savePlayerData(uuid, playerData);
+    }
+    public void modifyType3(String uuid, int newAmount) {
+        PlayerObject playerData = getPlayerData(uuid);
+        playerData.type3 = newAmount;
+        savePlayerData(uuid, playerData);
+    }
+    public void modifyType4(String uuid, int newAmount) {
+        PlayerObject playerData = getPlayerData(uuid);
+        playerData.type4 = newAmount;
+        savePlayerData(uuid, playerData);
+    }
+    public void modifyType5(String uuid, int newAmount) {
+        PlayerObject playerData = getPlayerData(uuid);
+        playerData.type5 = newAmount;
+        savePlayerData(uuid, playerData);
+    }
+
 }
