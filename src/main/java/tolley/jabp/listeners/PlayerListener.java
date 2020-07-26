@@ -28,6 +28,10 @@ public class PlayerListener implements Listener {
             Bukkit.getLogger().info("Player " + player.getName() + " (" + player.getUniqueId() + ") has a different name than in the database, updating database.");
             playerData.username = player.getName();
             dataHandler.savePlayerData(player.getUniqueId().toString(), playerData);
+        } else if (playerData.ip != player.getAddress().toString()) {
+            Bukkit.getLogger().info("Player " + player.getName() + " (" + player.getUniqueId() + ") has a different IP than in the database, updating database.");
+            playerData.ip = player.getAddress().toString();
+            dataHandler.savePlayerData(player.getUniqueId().toString(), playerData);
         } else {
             Bukkit.getLogger().info("Player " + player.getName() + " (" + player.getUniqueId() + ") is already in the database.");
         }
