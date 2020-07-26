@@ -24,10 +24,15 @@ public class PlayerListener implements Listener {
             playerData = new PlayerObject(player.getName(), player.getAddress().toString());
 
             dataHandler.savePlayerData(player.getUniqueId().toString(), playerData);
-        } else if (playerData.username != player.getName()) {
+        } else if (!playerData.username.equals(player.getName())) {
             Bukkit.getLogger().info("Player " + player.getName() + " (" + player.getUniqueId() + ") has a different name than in the database, updating database.");
             playerData.username = player.getName();
             dataHandler.savePlayerData(player.getUniqueId().toString(), playerData);
+            if (playerData.ip != player.getAddress().toString()) {
+                Bukkit.getLogger().info("Player " + player.getName() + " (" + player.getUniqueId() + ") has a different IP than in the database, updating database.");
+                playerData.ip = player.getAddress().toString();
+                dataHandler.savePlayerData(player.getUniqueId().toString(), playerData);
+            }
         } else if (playerData.ip != player.getAddress().toString()) {
             Bukkit.getLogger().info("Player " + player.getName() + " (" + player.getUniqueId() + ") has a different IP than in the database, updating database.");
             playerData.ip = player.getAddress().toString();

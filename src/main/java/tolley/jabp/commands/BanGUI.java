@@ -3,6 +3,7 @@ package tolley.jabp.commands;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,17 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import tolley.jabp.handlers.DataHandler;
 import tolley.jabp.listeners.InventoryListener;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class BanGUI implements CommandExecutor {
 
@@ -41,32 +33,13 @@ public class BanGUI implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length == 1) {
-                String username;
-                String uuid;
-                try {
-                    URL url = new URL("https://api.mojang.com/users/profiles/minecraft/" + args[0]);
-                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                    con.setRequestMethod("GET");
-                    int status = con.getResponseCode();
-                    BufferedReader in = new BufferedReader(
-                            new InputStreamReader(con.getInputStream()));
-                    String inputLine;
-                    StringBuilder content = new StringBuilder();
-                    while ((inputLine = in.readLine()) != null) {
-                        content.append(inputLine);
-                    }
-                    in.close();
-                    con.disconnect();
-                    JSONObject uuidJSON = (JSONObject) new JSONParser().parse(content.toString());
-                    uuid = (String) uuidJSON.get("id");
-                    username = (String) uuidJSON.get("name");
-                } catch (IOException | ParseException e) {
-                    e.printStackTrace();
-                    player.sendMessage(ChatColor.RED + "[JABP] " + ChatColor.WHITE + "I could not find that player");
+                OfflinePlayer op = Bukkit.getOfflinePlayer(args[0]);
+                if (!op.hasPlayedBefore()) {
+                    sender.sendMessage(ChatColor.RED + "[JABP] " + ChatColor.WHITE + "I could not find that player");
                     return true;
                 }
 
-                String windowTitle = "Punish: " + username;
+                String windowTitle = "Punish: " + args[0];
                 Inventory inv = Bukkit.createInventory(null, 27, windowTitle);
 
                 ItemStack one = new ItemStack(Material.BARRIER);
