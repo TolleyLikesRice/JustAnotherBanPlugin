@@ -4,17 +4,24 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-
-import java.util.List;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import tolley.jabp.handlers.DataHandler;
 
 public class InventoryListener implements Listener {
+    DataHandler dataHandler;
     FileConfiguration config;
     String windowTitle;
-    public void sendInfo(FileConfiguration incomingConfig, String incomingWindowTitle) {
+    String badPlayer;
+    String badPlayerUUID;
+    public void sendInfo(FileConfiguration incomingConfig, String incomingWindowTitle, String incomingBadPlayer, String incomingBadPlayerUUID, DataHandler incomingDataHandler) {
         config = incomingConfig;
         windowTitle = incomingWindowTitle;
+        badPlayer = incomingBadPlayer;
+        badPlayerUUID = incomingBadPlayerUUID;
+        dataHandler = incomingDataHandler;
     }
 
     @EventHandler
@@ -22,58 +29,36 @@ public class InventoryListener implements Listener {
         if (e.getView().getTitle().equals(windowTitle)) {
             if (e.getCurrentItem().getItemMeta() != null) {
                 if (e.getCurrentItem().getItemMeta().getDisplayName() != null) {
-                    if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.RED + "Rules")) {
-                        //code
-                        Player p = (Player) e.getWhoClicked();
-                        e.getWhoClicked().closeInventory();
-                        List<String> rules = config.getStringList("rules");
-                        StringBuilder rulesFormatted = new StringBuilder();
-                        for(String rule : rules){
-                            rulesFormatted.append(rule).append("\n");
-                        }
-                        p.sendMessage("The rules are:\n" + rulesFormatted);
-                        e.setCancelled(true);
-                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "Report")) {
-                        //code
-                        Player p = (Player) e.getWhoClicked();
-                        e.getWhoClicked().closeInventory();
-                        p.sendMessage(config.getString("reportusage"));
-                        e.setCancelled(true);
-                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Events")) {
-                        //code
-                        Player p = (Player) e.getWhoClicked();
-                        e.getWhoClicked().closeInventory();
-                        p.sendMessage(config.getString("event"));
-                        e.setCancelled(true);
-                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Game Selector")) {
-                        //code
-                        Player p = (Player) e.getWhoClicked();
-                        e.getWhoClicked().closeInventory();
-                        p.sendMessage("In Progress");
-                        e.setCancelled(true);
-                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Staff")) {
-                        //code
-                        Player p = (Player) e.getWhoClicked();
-                        e.getWhoClicked().closeInventory();
-                        List<String> staff = config.getStringList("staff");
-                        StringBuilder staffFormatted = new StringBuilder();
-                        for(String staffMember : staff){
-                            staffFormatted.append(staffMember).append("\n");
-                        }
-                        p.sendMessage("Our staff are:\n" + staffFormatted);
-                        e.setCancelled(true);
-                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "Website")) {
-                        //code
-                        Player p = (Player) e.getWhoClicked();
-                        e.getWhoClicked().closeInventory();
-                        p.sendMessage(ChatColor.GREEN + "Check out our website at " + config.getString("website"));
-                        e.setCancelled(true);
-                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Discord")) {
-                        //code
-                        Player p = (Player) e.getWhoClicked();
-                        e.getWhoClicked().closeInventory();
-                        p.sendMessage(ChatColor.AQUA + "Check out our discord at " + config.getString("discord"));
-                        e.setCancelled(true);
+                     if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', config.getString("type1Name")))) {
+                         Player p = (Player) e.getWhoClicked();
+                         e.getWhoClicked().closeInventory();
+                         p.sendMessage("Punishing " + badPlayer + " for " + ChatColor.translateAlternateColorCodes('&', config.getString("type1Name")));
+                         dataHandler.modifyType1(badPlayerUUID, dataHandler.getPlayerData(badPlayerUUID).type1 + 1);
+                         e.setCancelled(true);
+                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', config.getString("type2Name")))) {
+                         Player p = (Player) e.getWhoClicked();
+                         e.getWhoClicked().closeInventory();
+                         p.sendMessage("Punishing " + badPlayer + " for " + ChatColor.translateAlternateColorCodes('&', config.getString("type2Name")));
+                         dataHandler.modifyType2(badPlayerUUID, dataHandler.getPlayerData(badPlayerUUID).type2 + 1);
+                         e.setCancelled(true);
+                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', config.getString("type3Name")))) {
+                         Player p = (Player) e.getWhoClicked();
+                         e.getWhoClicked().closeInventory();
+                         p.sendMessage("Punishing " + badPlayer + " for " + ChatColor.translateAlternateColorCodes('&', config.getString("type3Name")));
+                         dataHandler.modifyType3(badPlayerUUID, dataHandler.getPlayerData(badPlayerUUID).type3 + 1);
+                         e.setCancelled(true);
+                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', config.getString("type4Name")))) {
+                         Player p = (Player) e.getWhoClicked();
+                         e.getWhoClicked().closeInventory();
+                         p.sendMessage("Punishing " + badPlayer + " for " + ChatColor.translateAlternateColorCodes('&', config.getString("type4Name")));
+                         dataHandler.modifyType4(badPlayerUUID, dataHandler.getPlayerData(badPlayerUUID).type4 + 1);
+                         e.setCancelled(true);
+                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', config.getString("type5Name")))) {
+                         Player p = (Player) e.getWhoClicked();
+                         e.getWhoClicked().closeInventory();
+                         p.sendMessage("Punishing " + badPlayer + " for " + ChatColor.translateAlternateColorCodes('&', config.getString("type5Name")));
+                         dataHandler.modifyType5(badPlayerUUID, dataHandler.getPlayerData(badPlayerUUID).type5 + 1);
+                         e.setCancelled(true);
                     } else {
                         e.setCancelled(true);
                     }
@@ -84,6 +69,11 @@ public class InventoryListener implements Listener {
                 e.setCancelled(true);
             }
         }
+    }
+
+    @EventHandler
+    public void onInventoryClose(InventoryCloseEvent e) {
+        HandlerList.unregisterAll(this);
     }
 
 }

@@ -2,11 +2,13 @@ package tolley.jabp;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import tolley.jabp.commands.BanGUI;
+import tolley.jabp.commands.PunishGUI;
 import tolley.jabp.commands.PlayerInfo;
 import tolley.jabp.handlers.DataHandler;
 import tolley.jabp.listeners.InventoryListener;
 import tolley.jabp.listeners.PlayerListener;
+
+import java.io.IOException;
 
 public class Main extends JavaPlugin {
 
@@ -17,11 +19,10 @@ public class Main extends JavaPlugin {
         DataHandler dataHandler = new DataHandler();
 
         // Commands
-        BanGUI banGUI = new BanGUI();
+        PunishGUI punishGUI = new PunishGUI();
         PlayerInfo playerInfo = new PlayerInfo();
 
         // Events
-        InventoryListener inventoryListener = new InventoryListener();
         PlayerListener playerListener = new PlayerListener();
 
         // Other
@@ -39,21 +40,25 @@ public class Main extends JavaPlugin {
         getLogger().info("|+++++++++++++++++++++++++++++++++++++|");
 
         // Register Commands
-        this.getCommand("bangui").setExecutor(banGUI);
+        this.getCommand("punish").setExecutor(punishGUI);
         this.getCommand("playerinfo").setExecutor(playerInfo);
 
         // Register Events
-        getServer().getPluginManager().registerEvents(inventoryListener, this);
         getServer().getPluginManager().registerEvents(playerListener, this);
 
         // Init Handlers
-        dataHandler.initDataHandler(getDataFolder().getAbsolutePath());
+        try {
+            dataHandler.initDataHandler(getDataFolder().getAbsolutePath());
+        } catch (IOException e) {
+            getLogger().warning("An IOException occurred while initializing the dataHandler. Disabling JustAnotherBanPlugin");
+            getServer().getPluginManager().disablePlugin(this);
+        }
 
         // Init Listeners
         playerListener.sendDataHandler(dataHandler);
 
         // Init Commands
-        banGUI.init(inventoryListener, config, dataHandler);
+        punishGUI.init(this, config, dataHandler);
         playerInfo.init(config, dataHandler);
 
     }

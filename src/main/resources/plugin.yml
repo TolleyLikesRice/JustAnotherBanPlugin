@@ -5,26 +5,31 @@ api-version: 1.13
 authors: [Tolley]
 description: Just Another Ban Plugin
 commands:
-  bangui:
-    description: Opens up the banning GUI
-    usage: /bangui
-    aliases: [bg, bgui]
-    permission: jabp.bangui
+  punish:
+    description: Opens up the punish GUI
+    usage: /punish <USERNAME>
+    aliases: [p, pun]
+    permission: jabp.punish
   playerinfo:
     description: Gets information on a player
-    usage: /playerinfo <username>
-    aliases: [pi, ui]
+    usage: /playerinfo <USERNAME>
+    aliases: [pi]
     permission: jabp.playerinfo
+  userinterface:
+    description: Opens up the punish GUI
+    usage: /userinterface <USERNAME>
+    aliases: [ui]
+    permission: jabp.ui
 permissions:
-  jabp.bangui:
-    description: Allows /bangui command
+  jabp.punish:
+    description: Allows /punish command
     default: op
   jabp.playerinfo:
-      description: Allows /playerinfo command
-      default: op
+    description: Allows /playerinfo command
+    default: op
   jabp.*:
     description: Allows all JustAnotherBanPlugin commands
     default: op
     children:
+      jabp.punish: true
       jabp.playerinfo: true
-      jabp.bangui: true

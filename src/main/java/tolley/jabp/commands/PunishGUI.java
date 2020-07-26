@@ -12,18 +12,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import tolley.jabp.Main;
 import tolley.jabp.handlers.DataHandler;
 import tolley.jabp.listeners.InventoryListener;
 
-public class BanGUI implements CommandExecutor {
+import static org.bukkit.Bukkit.getServer;
 
-    InventoryListener inventoryListener;
+public class PunishGUI implements CommandExecutor {
+
+    Main main;
     FileConfiguration config;
+    InventoryListener inventoryListener;
 
     DataHandler dataHandler;
 
-    public void init(InventoryListener invListener, FileConfiguration configuration, DataHandler dataHandler1) {
-        inventoryListener = invListener;
+    public void init(Main mainPlugin, FileConfiguration configuration, DataHandler dataHandler1) {
+        main = mainPlugin;
         config = configuration;
         dataHandler = dataHandler1;
     }
@@ -45,38 +49,28 @@ public class BanGUI implements CommandExecutor {
 
                     ItemStack one = new ItemStack(Material.BARRIER);
                     ItemMeta oneItemMeta = one.getItemMeta();
-                    oneItemMeta.setDisplayName(ChatColor.RED + "Rules");
+                    oneItemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("type1Name")));
                     one.setItemMeta(oneItemMeta);
 
                     ItemStack two = new ItemStack(Material.RED_WOOL);
                     ItemMeta twoMeta = two.getItemMeta();
-                    twoMeta.setDisplayName(ChatColor.YELLOW + "Report");
+                    twoMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("type2Name")));
                     two.setItemMeta(twoMeta);
 
                     ItemStack three = new ItemStack(Material.APPLE);
                     ItemMeta threeMeta = three.getItemMeta();
-                    threeMeta.setDisplayName(ChatColor.GREEN + "Events");
+                    threeMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("type3Name")));
                     three.setItemMeta(threeMeta);
 
                     ItemStack four = new ItemStack(Material.COMPASS);
                     ItemMeta fourMeta = four.getItemMeta();
-                    fourMeta.setDisplayName(ChatColor.BLUE + "Game Selector");
+                    fourMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("type4Name")));
                     four.setItemMeta(fourMeta);
 
                     ItemStack five = new ItemStack(Material.PLAYER_HEAD);
                     ItemMeta fiveMeta = five.getItemMeta();
-                    fiveMeta.setDisplayName(ChatColor.AQUA + "Staff");
+                    fiveMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("type5Name")));
                     five.setItemMeta(fiveMeta);
-
-                    ItemStack six = new ItemStack(Material.WHITE_WOOL);
-                    ItemMeta sixMeta = six.getItemMeta();
-                    sixMeta.setDisplayName(ChatColor.YELLOW + "Website");
-                    six.setItemMeta(sixMeta);
-
-                    ItemStack seven = new ItemStack(Material.PURPLE_WOOL);
-                    ItemMeta sevenMeta = seven.getItemMeta();
-                    sevenMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Discord");
-                    seven.setItemMeta(sevenMeta);
 
                     // Background
                     inv.setItem(0, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
@@ -85,10 +79,10 @@ public class BanGUI implements CommandExecutor {
                     inv.setItem(6, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
                     inv.setItem(8, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
 
-                    //inv.setItem(10, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
+                    inv.setItem(10, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
                     //inv.setItem(12, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
                     //inv.setItem(14, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
-                    //inv.setItem(16, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
+                    inv.setItem(16, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
 
                     inv.setItem(18, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
                     inv.setItem(20, new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
@@ -112,15 +106,15 @@ public class BanGUI implements CommandExecutor {
                     inv.setItem(23, new ItemStack(Material.WHITE_STAINED_GLASS_PANE));
                     inv.setItem(25, new ItemStack(Material.WHITE_STAINED_GLASS_PANE));
 
-                    inv.setItem(10, one);
-                    inv.setItem(11, two);
-                    inv.setItem(12, three);
-                    inv.setItem(13, four);
-                    inv.setItem(14, five);
-                    inv.setItem(15, six);
-                    inv.setItem(16, seven);
+                    inv.setItem(11, one);
+                    inv.setItem(12, two);
+                    inv.setItem(13, three);
+                    inv.setItem(14, four);
+                    inv.setItem(15, five);
                     player.openInventory(inv);
-                    inventoryListener.sendInfo(config, windowTitle);
+                    inventoryListener = new InventoryListener();
+                    getServer().getPluginManager().registerEvents(inventoryListener, main);
+                    inventoryListener.sendInfo(config, windowTitle,  op.getName(), op.getUniqueId().toString(), dataHandler);
                 } else {
                     player.sendMessage("Incorrect Syntax. Use: /bangui <player>");
                 }

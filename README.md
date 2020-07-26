@@ -4,8 +4,10 @@ JustAnotherBanPlugin is you guessed it, a ban plugin. It's for 1.13+ Spigot/Pape
 
 ## To Do List
 
-- [ ] DataHandler (Saving data for later access)
+- [x] DataHandler (Saving data for later access)
 - [ ] GUI
 - [ ] Make GUI configurable
 - [ ] Detection of potential alts
 - [ ] Add banning/kicked without a need for another plugin
+
+## Commands

@@ -1,14 +1,5 @@
-rules:
-  - Rule1
-  - Rule2
-  - Rule3
-  - Rule4
-  - Rule5
-staff:
-  - Staff1
-  - Staff2
-  - Staff3
-discord: https://discord.gg/3fW85m6
-website: Coming Soon
-event: Sorry, no events right now
-reportusage: Do "/report <PlayerName>" to report someone
+type1Name: "&cType1"
+type2Name: "&cType2"
+type3Name: "&cType3"
+type4Name: "&cType4"
+type5Name: "&cType5"

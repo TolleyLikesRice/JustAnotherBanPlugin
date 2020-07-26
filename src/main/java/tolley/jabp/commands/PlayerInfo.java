@@ -40,6 +40,11 @@ public class PlayerInfo implements CommandExecutor {
 
                 PlayerObject playerData = dataHandler.getPlayerData(uuid);
 
+                if (playerData == null) {
+                    sender.sendMessage("An error occurred while retrieving the data for that user");
+                    return true;
+                }
+
                 String msg = ChatColor.RED + "Username: " + ChatColor.AQUA + playerData.username
                         + ChatColor.RED + "\n\nUUID: " + ChatColor.AQUA + uuid
                         + ChatColor.RED + "\n\nIP: " + ChatColor.AQUA + playerData.ip
