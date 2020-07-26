@@ -14,7 +14,7 @@ public class DataHandler {
     String dataFolder;
 
     public boolean initDataHandler(String path) {
-        dataFolder = path + "/";
+        dataFolder = path + "/UserData/";
         Bukkit.getLogger().info("DataHandler initialized with data path " + dataFolder);
         return true;
     }
