@@ -9,7 +9,22 @@ commands:
     description: Opens up the banning GUI
     usage: /bangui
     aliases: [bg, bgui]
+    permission: jabp.bangui
   playerinfo:
     description: Gets information on a player
     usage: /playerinfo <username>
     aliases: [pi, ui]
+    permission: jabp.playerinfo
+permissions:
+  jabp.bangui:
+    description: Allows /bangui command
+    default: op
+  jabp.playerinfo:
+      description: Allows /playerinfo command
+      default: op
+  jabp.*:
+    description: Allows all JustAnotherBanPlugin commands
+    default: op
+    children:
+      jabp.playerinfo: true
+      jabp.bangui: true
