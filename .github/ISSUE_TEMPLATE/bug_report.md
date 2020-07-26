@@ -19,6 +19,7 @@ Steps to reproduce the behavior:
 **Server Info**
 Version: 1.xx.x
 OS: Windows/Linux/Mac
+Minecraft Server: Bukkit/Spigot/Paper
 
 Error Message:
 ```
