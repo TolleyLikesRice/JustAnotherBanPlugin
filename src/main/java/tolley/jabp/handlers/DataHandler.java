@@ -19,7 +19,7 @@ public class DataHandler {
     public boolean initDataHandler(String path) throws IOException {
         dataFolder = path + "/UserData/";
         Bukkit.getLogger().info("DataHandler initialized with data path " + dataFolder);
-        Path directory = Paths.get(path);
+        Path directory = Paths.get(dataFolder);
             Bukkit.getLogger().info("createDirectories returned " + Files.createDirectories(directory));
         return true;
     }
