@@ -48,11 +48,11 @@ public class PlayerInfo implements CommandExecutor {
                 String msg = ChatColor.RED + "Username: " + ChatColor.AQUA + playerData.username
                         + ChatColor.RED + "\n\nUUID: " + ChatColor.AQUA + uuid
                         + ChatColor.RED + "\n\nIP: " + ChatColor.AQUA + playerData.ip
-                        + ChatColor.RED + "\n\nType 1: " + ChatColor.AQUA + playerData.type1
-                        + ChatColor.RED + "\n\nType 2: " + ChatColor.AQUA + playerData.type2
-                        + ChatColor.RED + "\n\nType 3: " + ChatColor.AQUA + playerData.type3
-                        + ChatColor.RED + "\n\nType 4: " + ChatColor.AQUA + playerData.type4
-                        + ChatColor.RED + "\n\nType 5: " + ChatColor.AQUA + playerData.type5;
+                        + ChatColor.RED + "\n\n" + ChatColor.translateAlternateColorCodes('&', config.getString("type1Name")) + ": " + ChatColor.AQUA + playerData.type1
+                        + ChatColor.RED + "\n\n" + ChatColor.translateAlternateColorCodes('&', config.getString("type2Name")) + ": " + ChatColor.AQUA + playerData.type2
+                        + ChatColor.RED + "\n\n" + ChatColor.translateAlternateColorCodes('&', config.getString("type3Name")) + ": " + ChatColor.AQUA + playerData.type3
+                        + ChatColor.RED + "\n\n" + ChatColor.translateAlternateColorCodes('&', config.getString("type4Name")) + ": " + ChatColor.AQUA + playerData.type4
+                        + ChatColor.RED + "\n\n" + ChatColor.translateAlternateColorCodes('&', config.getString("type5Name")) + ": " + ChatColor.AQUA + playerData.type5;
 
                 if (sender instanceof Player) {
                     sender.sendMessage(msg);
