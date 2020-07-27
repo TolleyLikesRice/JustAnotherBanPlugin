@@ -49,27 +49,27 @@ public class PunishGUI implements CommandExecutor {
 
                     ItemStack one = new ItemStack(Material.BARRIER);
                     ItemMeta oneItemMeta = one.getItemMeta();
-                    oneItemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("type1Name")));
+                    oneItemMeta.setDisplayName(ChatColor.RED + ChatColor.translateAlternateColorCodes('&', config.getString("type1Name")));
                     one.setItemMeta(oneItemMeta);
 
                     ItemStack two = new ItemStack(Material.RED_WOOL);
                     ItemMeta twoMeta = two.getItemMeta();
-                    twoMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("type2Name")));
+                    twoMeta.setDisplayName(ChatColor.RED + ChatColor.translateAlternateColorCodes('&', config.getString("type2Name")));
                     two.setItemMeta(twoMeta);
 
                     ItemStack three = new ItemStack(Material.APPLE);
                     ItemMeta threeMeta = three.getItemMeta();
-                    threeMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("type3Name")));
+                    threeMeta.setDisplayName(ChatColor.RED + ChatColor.translateAlternateColorCodes('&', config.getString("type3Name")));
                     three.setItemMeta(threeMeta);
 
                     ItemStack four = new ItemStack(Material.COMPASS);
                     ItemMeta fourMeta = four.getItemMeta();
-                    fourMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("type4Name")));
+                    fourMeta.setDisplayName(ChatColor.RED + ChatColor.translateAlternateColorCodes('&', config.getString("type4Name")));
                     four.setItemMeta(fourMeta);
 
                     ItemStack five = new ItemStack(Material.PLAYER_HEAD);
                     ItemMeta fiveMeta = five.getItemMeta();
-                    fiveMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("type5Name")));
+                    fiveMeta.setDisplayName(ChatColor.RED + ChatColor.translateAlternateColorCodes('&', config.getString("type5Name")));
                     five.setItemMeta(fiveMeta);
 
                     // Background
