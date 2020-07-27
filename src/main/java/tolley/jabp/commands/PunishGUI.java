@@ -116,7 +116,7 @@ public class PunishGUI implements CommandExecutor {
                     getServer().getPluginManager().registerEvents(inventoryListener, main);
                     inventoryListener.sendInfo(config, windowTitle,  op.getName(), op.getUniqueId().toString(), dataHandler);
                 } else {
-                    player.sendMessage("Incorrect Syntax. Use: /bangui <player>");
+                    player.sendMessage("Incorrect Syntax. Use: /punish <player>");
                 }
             } else {
                 Bukkit.getLogger().info("You cannot use BanGUI from console!");
