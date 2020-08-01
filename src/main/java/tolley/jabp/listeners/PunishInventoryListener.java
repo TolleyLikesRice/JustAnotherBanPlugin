@@ -10,12 +10,13 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import tolley.jabp.handlers.DataHandler;
 
-public class InventoryListener implements Listener {
+public class PunishInventoryListener implements Listener {
     DataHandler dataHandler;
     FileConfiguration config;
     String windowTitle;
     String badPlayer;
     String badPlayerUUID;
+
     public void sendInfo(FileConfiguration incomingConfig, String incomingWindowTitle, String incomingBadPlayer, String incomingBadPlayerUUID, DataHandler incomingDataHandler) {
         config = incomingConfig;
         windowTitle = incomingWindowTitle;

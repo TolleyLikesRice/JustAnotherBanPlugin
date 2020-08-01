@@ -3,3 +3,22 @@ type2Name: "&cType2"
 type3Name: "&cType3"
 type4Name: "&cType4"
 type5Name: "&cType5"
+
+# |------------|
+# |  Messages  |
+# |------------|
+
+# Colour codes work, use https://wiki.ess3.net/mc/ for a list of colours.
+
+# Possible variables
+# [punished] - Player that got punished
+# [staff] - Staff that punished the player
+# [reason] - The reason for the punishment
+# [timeLeft] - Time left on the ban
+# [time] - How long the ban is
+
+BanReason: >
+  &cYou are Banned for [time]
+  &bReason: &c[reason]
+  &bBanned By: &c[staff]
+  &bTime Left: &c[timeLeft]

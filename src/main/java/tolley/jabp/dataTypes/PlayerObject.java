@@ -1,4 +1,4 @@
-package tolley.jabp;
+package tolley.jabp.dataTypes;
 
 public class PlayerObject {
     public String username;
@@ -8,6 +8,7 @@ public class PlayerObject {
     public int type3 = 0;
     public int type4 = 0;
     public int type5 = 0;
+
     public PlayerObject(String playerUsername, String ipAddress) {
         username = playerUsername;
         ip = ipAddress;

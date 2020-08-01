@@ -2,7 +2,7 @@ package tolley.jabp.handlers;
 
 import com.google.gson.Gson;
 import org.bukkit.Bukkit;
-import tolley.jabp.PlayerObject;
+import tolley.jabp.dataTypes.PlayerObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,7 +20,7 @@ public class DataHandler {
         dataFolder = path + "/UserData/";
         Bukkit.getLogger().info("DataHandler initialized with data path " + dataFolder);
         Path directory = Paths.get(dataFolder);
-            Bukkit.getLogger().info("createDirectories returned " + Files.createDirectories(directory));
+        Bukkit.getLogger().info("createDirectories returned " + Files.createDirectories(directory));
         return true;
     }
 
@@ -49,6 +49,7 @@ public class DataHandler {
         }
 
     }
+
     public void savePlayerData(String uuid, PlayerObject player) {
         //Creating the file
         try {
@@ -83,21 +84,25 @@ public class DataHandler {
         playerData.type1 = newAmount;
         savePlayerData(uuid, playerData);
     }
+
     public void modifyType2(String uuid, int newAmount) {
         PlayerObject playerData = getPlayerData(uuid);
         playerData.type2 = newAmount;
         savePlayerData(uuid, playerData);
     }
+
     public void modifyType3(String uuid, int newAmount) {
         PlayerObject playerData = getPlayerData(uuid);
         playerData.type3 = newAmount;
         savePlayerData(uuid, playerData);
     }
+
     public void modifyType4(String uuid, int newAmount) {
         PlayerObject playerData = getPlayerData(uuid);
         playerData.type4 = newAmount;
         savePlayerData(uuid, playerData);
     }
+
     public void modifyType5(String uuid, int newAmount) {
         PlayerObject playerData = getPlayerData(uuid);
         playerData.type5 = newAmount;

@@ -8,7 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import tolley.jabp.PlayerObject;
+import tolley.jabp.dataTypes.PlayerObject;
 import tolley.jabp.handlers.DataHandler;
 
 public class PlayerInfo implements CommandExecutor {

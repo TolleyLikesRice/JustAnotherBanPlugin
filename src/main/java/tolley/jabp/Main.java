@@ -2,10 +2,9 @@ package tolley.jabp;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import tolley.jabp.commands.PunishGUI;
 import tolley.jabp.commands.PlayerInfo;
+import tolley.jabp.commands.PunishGUI;
 import tolley.jabp.handlers.DataHandler;
-import tolley.jabp.listeners.InventoryListener;
 import tolley.jabp.listeners.PlayerListener;
 
 import java.io.IOException;

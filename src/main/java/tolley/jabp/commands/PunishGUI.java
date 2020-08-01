@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import tolley.jabp.Main;
 import tolley.jabp.handlers.DataHandler;
-import tolley.jabp.listeners.InventoryListener;
+import tolley.jabp.listeners.PunishInventoryListener;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -22,7 +22,7 @@ public class PunishGUI implements CommandExecutor {
 
     Main main;
     FileConfiguration config;
-    InventoryListener inventoryListener;
+    PunishInventoryListener punishInventoryListener;
 
     DataHandler dataHandler;
 
@@ -34,7 +34,7 @@ public class PunishGUI implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender.hasPermission("jabp.bangui")) {
+        if (sender.hasPermission("jabp.punish")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 if (args.length == 1) {
@@ -112,9 +112,9 @@ public class PunishGUI implements CommandExecutor {
                     inv.setItem(14, four);
                     inv.setItem(15, five);
                     player.openInventory(inv);
-                    inventoryListener = new InventoryListener();
-                    getServer().getPluginManager().registerEvents(inventoryListener, main);
-                    inventoryListener.sendInfo(config, windowTitle,  op.getName(), op.getUniqueId().toString(), dataHandler);
+                    punishInventoryListener = new PunishInventoryListener();
+                    getServer().getPluginManager().registerEvents(punishInventoryListener, main);
+                    punishInventoryListener.sendInfo(config, windowTitle, op.getName(), op.getUniqueId().toString(), dataHandler);
                 } else {
                     player.sendMessage("Incorrect Syntax. Use: /punish <player>");
                 }
