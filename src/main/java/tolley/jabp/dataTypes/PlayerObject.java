@@ -1,5 +1,8 @@
 package tolley.jabp.dataTypes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayerObject {
     public String username;
     public String ip;
@@ -8,6 +11,7 @@ public class PlayerObject {
     public int type3 = 0;
     public int type4 = 0;
     public int type5 = 0;
+    public List<PunishmentReason> punishments = new ArrayList<>();
 
     public PlayerObject(String playerUsername, String ipAddress) {
         username = playerUsername;

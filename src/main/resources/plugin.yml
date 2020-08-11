@@ -27,9 +27,16 @@ permissions:
   jabp.playerinfo:
     description: Allows /playerinfo command
     default: op
+  jabp.receiveStaffMessages:
+    description: Allows a player to recieve staff messages.
+    default: op
+  jabp.ui:
+    description: Allows /userinterface command.
+    default: op
   jabp.*:
-    description: Allows all JustAnotherBanPlugin commands
+    description: Allows all JustAnotherBanPlugin permissions
     default: op
     children:
       jabp.punish: true
       jabp.playerinfo: true
+      jabp.receiveStaffMessages: true

@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import tolley.jabp.Main;
 import tolley.jabp.handlers.DataHandler;
+import tolley.jabp.handlers.PunishmentHandler;
 import tolley.jabp.listeners.PunishInventoryListener;
 
 import static org.bukkit.Bukkit.getServer;
@@ -25,11 +26,13 @@ public class PunishGUI implements CommandExecutor {
     PunishInventoryListener punishInventoryListener;
 
     DataHandler dataHandler;
+    PunishmentHandler punishmentHandler;
 
-    public void init(Main mainPlugin, FileConfiguration configuration, DataHandler dataHandler1) {
+    public void init(Main mainPlugin, FileConfiguration configuration, DataHandler dataHandler1, PunishmentHandler punishmentHandler1) {
         main = mainPlugin;
         config = configuration;
         dataHandler = dataHandler1;
+        punishmentHandler = punishmentHandler1;
     }
 
     @Override
@@ -113,13 +116,13 @@ public class PunishGUI implements CommandExecutor {
                     inv.setItem(15, five);
                     player.openInventory(inv);
                     punishInventoryListener = new PunishInventoryListener();
+                    punishInventoryListener.sendInfo(config, windowTitle, op.getName(), op.getUniqueId().toString(), dataHandler, punishmentHandler);
                     getServer().getPluginManager().registerEvents(punishInventoryListener, main);
-                    punishInventoryListener.sendInfo(config, windowTitle, op.getName(), op.getUniqueId().toString(), dataHandler);
                 } else {
                     player.sendMessage("Incorrect Syntax. Use: /punish <player>");
                 }
             } else {
-                Bukkit.getLogger().info("You cannot use BanGUI from console!");
+                Bukkit.getLogger().info("You cannot use PunishGUI from console!");
             }
         } else {
             sender.sendMessage("You do not have permission for this!");

@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import tolley.jabp.commands.PlayerInfo;
 import tolley.jabp.commands.PunishGUI;
 import tolley.jabp.handlers.DataHandler;
+import tolley.jabp.handlers.PunishmentHandler;
 import tolley.jabp.listeners.PlayerListener;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class Main extends JavaPlugin {
 
         // Handlers
         DataHandler dataHandler = new DataHandler();
+        PunishmentHandler punishmentHandler = new PunishmentHandler();
 
         // Commands
         PunishGUI punishGUI = new PunishGUI();
@@ -52,12 +54,13 @@ public class Main extends JavaPlugin {
             getLogger().warning("An IOException occurred while initializing the dataHandler. Disabling JustAnotherBanPlugin");
             getServer().getPluginManager().disablePlugin(this);
         }
+        punishmentHandler.initPunishmentHandler(config,dataHandler);
 
         // Init Listeners
-        playerListener.sendDataHandler(dataHandler);
+        playerListener.sendDataHandler(dataHandler, punishmentHandler, config);
 
         // Init Commands
-        punishGUI.init(this, config, dataHandler);
+        punishGUI.init(this, config, dataHandler, punishmentHandler);
         playerInfo.init(config, dataHandler);
 
     }

@@ -17,7 +17,7 @@ type5Name: "&cType5"
 # [timeLeft] - Time left on the ban
 # [time] - How long the ban is
 
-BanReason: >
+BanReason: |
   &cYou are Banned for [time]
   &bReason: &c[reason]
   &bBanned By: &c[staff]

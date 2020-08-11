@@ -6,14 +6,14 @@ public class PunishmentReason {
     public String playerName;
     public String reason;
     public String punishedBy;
-    public Date expire;
+    public Date length;
     public Date created;
 
     public PunishmentReason(String playerPunished, String punishmentReason, String staffPunishedBy, Date punishmentExpire, Date punishmentDate) {
         playerName = playerPunished;
         reason = punishmentReason;
         punishedBy = staffPunishedBy;
-        expire = punishmentExpire;
+        length = punishmentExpire;
         created = punishmentDate;
     }
 }

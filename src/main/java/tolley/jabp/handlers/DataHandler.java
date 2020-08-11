@@ -3,6 +3,7 @@ package tolley.jabp.handlers;
 import com.google.gson.Gson;
 import org.bukkit.Bukkit;
 import tolley.jabp.dataTypes.PlayerObject;
+import tolley.jabp.dataTypes.PunishmentReason;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -109,4 +110,9 @@ public class DataHandler {
         savePlayerData(uuid, playerData);
     }
 
+    public void addPunishment(String uuid, PunishmentReason reason) {
+        PlayerObject playerData = getPlayerData(uuid);
+        playerData.punishments.add(reason);
+        savePlayerData(uuid, playerData);
+    }
 }
